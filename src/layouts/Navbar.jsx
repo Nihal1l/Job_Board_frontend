@@ -79,15 +79,15 @@ const Navbar = () => {
             <details className="z-50">
               <summary>Jobs</summary>
               <ul className="p-2 w-48 shadow-lg bg-base-100 rounded-box">
-                <li>
+                {/* <li>
                   <Link to="/dashboard">Dashboard</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/jobs">Job List</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/apply">Job Apply</Link>
-                </li>
+                </li> */}
                 {user?.is_staff && (
                   <li>
                     <Link to="/post-job" className="text-primary font-semibold">
