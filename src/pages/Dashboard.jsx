@@ -48,7 +48,7 @@ const Dashboard = () => {
         </div>
 
         {/* Active Plans Section */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        {/* <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-gray-900">Active Plans</h2>
             <div className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold uppercase tracking-wider">
@@ -89,7 +89,7 @@ const Dashboard = () => {
               </a>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

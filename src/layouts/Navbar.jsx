@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuthContext();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className={`navbar bg-base-100 shadow-sm ${isHome ? 'fixed top-0 left-0 right-0 z-50' : ''}`}>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -98,12 +101,12 @@ const Navbar = () => {
           <li>
             <Link to="/about">About</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/contact">Contact</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/upgrade-plan" className="text-primary font-bold">
-              Premier User
+              Be a Premium User
             </Link>
           </li>
         </ul>
@@ -111,7 +114,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <div>
-            <div className="dropdown dropdown-end mr-4">
+            {/* <div className="dropdown dropdown-end mr-4">
               <div
                 tabIndex={0}
                 role="button"
@@ -150,7 +153,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -171,18 +174,18 @@ const Navbar = () => {
                 <li>
                   <Link to="/dashboard" className="justify-between">
                     Dashboard
-                    <span className="badge badge-primary">Admin</span>
+                    {/* <span className="badge badge-primary">Admin</span> */}
                   </Link>
                 </li>
                 <li>
-                  <a className="justify-between">
+                  <Link to="/dashboard/profile" className="justify-between">
                     Profile
-                    <span className="badge">New</span>
-                  </a>
+                    {/* <span className="badge">New</span> */}
+                  </Link>
                 </li>
-                <li>
-                  <a>Settings</a>
-                </li>
+                {/* <li>
+                  <Link to="/dashboard/settings">Settings</Link>
+                </li> */}
                 <li>
                   <a onClick={logoutUser}>Logout</a>
                 </li>

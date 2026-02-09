@@ -32,7 +32,7 @@ export default function JobPortalHero() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 2500);
     return () => clearInterval(timer);
   }, [currentSlide]);
 
@@ -75,7 +75,7 @@ export default function JobPortalHero() {
                   {slide.subtitle}
                 </p>
 
-                {/* Search Box */}
+                {/* Search Box
                 <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-2 sm:p-3 flex flex-col sm:flex-row items-stretch sm:items-center max-w-2xl gap-2">
                   <div className="flex items-center flex-1 px-3 sm:px-4 py-2 sm:py-0">
                     <Briefcase className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0" />
@@ -90,10 +90,10 @@ export default function JobPortalHero() {
                   <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95">
                     Search
                   </button>
-                </div>
+                </div> */}
 
                 {/* Popular Searches */}
-                <div className="mt-6 flex items-center flex-wrap gap-x-2 gap-y-1">
+                {/* <div className="mt-6 flex items-center flex-wrap gap-x-2 gap-y-1">
                   <span className="text-slate-300 font-medium text-sm sm:text-base">Popular Searches :</span>
                   {popularSearches.map((term, index) => (
                     <React.Fragment key={term}>
@@ -105,7 +105,7 @@ export default function JobPortalHero() {
                       )}
                     </React.Fragment>
                   ))}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

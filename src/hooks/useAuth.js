@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import apiClient from "../services/api-client";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const getToken = () => {
     const token = localStorage.getItem("authTokens");
@@ -140,6 +142,7 @@ const useAuth = () => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
+    navigate("/login");
   };
 
   return {
