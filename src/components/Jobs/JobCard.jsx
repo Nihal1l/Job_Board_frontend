@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Building2, Calendar, Briefcase, CheckCircle2 } from 'lucide-react';
 import useAuthContext from '../../hooks/useAuthContext';
-import apiClient from '../../services/api-client';
+import authApiClient from '../../services/auth-api-client';
 
 const JobCard = ({ job }) => {
   const { authTokens, user } = useAuthContext();
@@ -18,7 +18,7 @@ const JobCard = ({ job }) => {
     setLoading(true);
     setError('');
     try {
-      const response = await apiClient.post(`/jobs/${job.id}/applys/`, {}, {
+      const response = await authApiClient.post(`/jobs/${job.id}/applys/`, {}, {
         headers: {
           Authorization: `JWT ${authTokens?.access}`,
         },

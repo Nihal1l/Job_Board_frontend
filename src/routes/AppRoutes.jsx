@@ -17,6 +17,7 @@ import ContactPage from "../pages/ContactPage";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import PaymentCancel from "../pages/PaymentCancel";
 import PaymentFail from "../pages/PaymentFail";
+import JobList from "../components/Jobs/JobList";
 
 const AppRoutes = () => {
   return (
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           <Route path="contact" element={<ContactPage />} />
           <Route path="upgrade-plan" element={<UpgradePlan />} />
           <Route path="post-job" element={<PostJob />} />
+          <Route path="jobs" element={<JobList />} />
           <Route path="activate/:uid/:token" element={<ActivateAccount />} />
           <Route
             path="password/reset/confirm/:uid/:token"
