@@ -37,17 +37,17 @@ const Navbar = () => {
             <li>
               <a>Jobs</a>
               <ul className="p-2">
-                {!user?.is_staff && (
+                {/* {!user?.is_staff && (
                   <li>
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
-                )}
+                )} */}
                 <li>
                   <Link to="/jobs">Job List</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/apply">Job Apply</Link>
-                </li>
+                </li> */}
                 {user?.is_staff && (
                   <li>
                     <Link to="/post-job" className="text-primary font-semibold">
@@ -57,20 +57,20 @@ const Navbar = () => {
                 )}
               </ul>
             </li>
-            <li>
+            {/* <li>
               <Link to="/about">About</Link>
             </li>
             <li>
               <Link to="/contact">Contact</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/upgrade-plan" className="text-primary font-bold">
-                Premier User
+                Be a Premium User
               </Link>
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">Job Portal</Link>
+        <Link to="/" className="btn btn-ghost text-xl">Job Venue</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-2">

@@ -17,12 +17,11 @@ const Login = () => {
   const { errorMsg, loginUser, user, fetchUserProfile, resetPassword } =
     useAuthContext();
   const [loading, setLoading] = useState(false);
-  console.log("user ===========", user);
   const onSubmit = async (data) => {
     setLoading(true);
     try {
       await loginUser(data);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       console.log("Login Failed", error);
     } finally {
@@ -39,7 +38,6 @@ const Login = () => {
 
     try {
       const response = await resetPassword(email);
-      console.log("response======", response);
 
       if (response.success) {
         alert("Please check your email for the reset password link.");
