@@ -13,6 +13,7 @@ import Profile from "../pages/Profile";
 import ResetPasswordConfirm from "../components/Registration/ResetPasswordConfirm";
 import PostJob from "../pages/PostJob";
 import UpgradePlan from "../pages/UpgradePlan";
+import AdminDashboard from '../pages/AdminDashboard';
 import ContactPage from "../pages/ContactPage";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import PaymentCancel from "../pages/PaymentCancel";
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           <Route path="register" element={<Register />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="upgrade-plan" element={<UpgradePlan />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="post-job" element={<PostJob />} />
           <Route path="jobs" element={<JobList />} />
           <Route path="activate/:uid/:token" element={<ActivateAccount />} />

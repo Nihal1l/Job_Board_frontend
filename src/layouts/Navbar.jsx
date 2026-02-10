@@ -37,9 +37,11 @@ const Navbar = () => {
             <li>
               <a>Jobs</a>
               <ul className="p-2">
-                <li>
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>
+                {!user?.is_staff && (
+                  <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                )}
                 <li>
                   <Link to="/jobs">Job List</Link>
                 </li>
@@ -98,9 +100,9 @@ const Navbar = () => {
               </ul>
             </details>
           </li>
-          <li>
+          {/* <li>
             <Link to="/about">About</Link>
-          </li>
+          </li> */}
           {/* <li>
             <Link to="/contact">Contact</Link>
           </li> */}
@@ -171,12 +173,19 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
-                <li>
-                  <Link to="/dashboard" className="justify-between">
-                    Dashboard
-                    {/* <span className="badge badge-primary">Admin</span> */}
-                  </Link>
-                </li>
+                {user?.is_staff ? (
+                  <li>
+                    <Link to="/admin-dashboard" className="justify-between text-purple-600 font-semibold">
+                      Admin Dashboard
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link to="/dashboard" className="justify-between">
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link to="/dashboard/profile" className="justify-between">
                     Profile
