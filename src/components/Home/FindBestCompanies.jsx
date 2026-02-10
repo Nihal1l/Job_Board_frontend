@@ -143,7 +143,7 @@ const FindBestCompanies = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
-            Find Best Companies
+            Best Companies
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Discover opportunities with world-class organizations. Explore their culture, mission, and current open positions.

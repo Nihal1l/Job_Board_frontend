@@ -32,7 +32,7 @@ export default function JobPortalHero() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 2500);
+    },2850);
     return () => clearInterval(timer);
   }, [currentSlide]);
 
