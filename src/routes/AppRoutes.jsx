@@ -20,6 +20,7 @@ import PaymentCancel from "../pages/PaymentCancel";
 import PaymentFail from "../pages/PaymentFail";
 import JobList from "../components/Jobs/JobList";
 import FindBestCompanies from "../components/Home/FindBestCompanies";
+import Chat from "../pages/Chat";
 
 const AppRoutes = () => {
   return (
@@ -59,10 +60,13 @@ const AppRoutes = () => {
         >
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="chat/:roomId" element={<Chat />} />
         </Route>
       </Routes>
     </>
   );
 };
+
 
 export default AppRoutes;

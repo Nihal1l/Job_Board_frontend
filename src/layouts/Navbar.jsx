@@ -141,11 +141,16 @@ const Navbar = () => {
                   </li>
                 )}
                 <li>
-                  <Link to="/dashboard/profile" className="justify-between">
-                    Profile
-                    {/* <span className="badge">New</span> */}
+                  <Link to="/dashboard/chat" className="justify-between">
+                    Messages
                   </Link>
                 </li>
+                <li>
+                  <Link to="/dashboard/profile" className="justify-between">
+                    Profile
+                  </Link>
+                </li>
+
                 {/* <li>
                   <Link to="/dashboard/settings">Settings</Link>
                 </li> */}

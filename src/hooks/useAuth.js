@@ -147,6 +147,7 @@ const useAuth = () => {
 
   return {
     user,
+    authTokens,
     errorMsg,
     loginUser,
     registerUser,
@@ -157,5 +158,6 @@ const useAuth = () => {
     resendActivation,
   };
 };
+
 
 export default useAuth;

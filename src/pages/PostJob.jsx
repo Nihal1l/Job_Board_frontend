@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
-import apiClient from "../services/api-client";
+import authApiClient from "../services/auth-api-client";
 import ErroAlert from "../components/ErroAlert";
 import { useState } from "react";
 
 const PostJob = () => {
-  const { authTokens, errorMsg } = useAuthContext();
+  const { errorMsg } = useAuthContext();
   const [successMsg, setSuccessMsg] = useState("");
   const [localError, setLocalError] = useState("");
   const navigate = useNavigate();
@@ -21,24 +21,29 @@ const PostJob = () => {
     setLocalError("");
     setSuccessMsg("");
     try {
-      const response = await apiClient.post("/jobs/", data, {
-        headers: {
-          Authorization: `JWT ${authTokens?.access}`,
-        },
-      });
+      // Use authApiClient which auto-attaches tokens and handles refresh
+      const response = await authApiClient.post("/jobs/", data);
+      
       if (response.status === 201 || response.status === 200) {
         setSuccessMsg("Job posted successfully!");
         setTimeout(() => navigate("/"), 2000);
       }
     } catch (error) {
       console.error("Failed to post job", error);
-      if (error.response && error.response.data) {
-        setLocalError(Object.values(error.response.data).flat().join(" "));
+      
+      if (error.response?.data) {
+        // Flatten error messages and avoid [object Object]
+        const messages = Object.values(error.response.data)
+          .flat()
+          .map(err => typeof err === 'object' ? JSON.stringify(err) : err)
+          .join(" ");
+        setLocalError(messages || "Failed to post job. Please check your input.");
       } else {
-        setLocalError("Failed to post job. Please try again.");
+        setLocalError(error.message || "Failed to post job. Please try again.");
       }
     }
   };
+
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">

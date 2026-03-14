@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authApiClient from '../services/auth-api-client';
 import useAuthContext from '../hooks/useAuthContext';
+import { createChatRoom } from '../services/chat-service';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -73,6 +74,21 @@ const Dashboard = () => {
           }
       }
   };
+
+  const handleChatWithEmployer = async (applicationId) => {
+    console.log("Attempting to create chat room for application:", applicationId);
+    try {
+      const response = await createChatRoom(applicationId);
+      console.log("Chat room response:", response.data);
+      // Backend returns the room object (either new or existing)
+      const roomId = response.data.id;
+      navigate(`/dashboard/chat/${roomId}`);
+    } catch (error) {
+      console.error("Error creating/opening chat room:", error.response?.data || error.message);
+      alert(`Failed to start chat: ${error.response?.data?.detail || error.message || "Please try again."}`);
+    }
+  };
+
 
   const getStatusColor = (status) => {
     const colors = {
@@ -317,6 +333,13 @@ const Dashboard = () => {
                               >
                                 Delete Application
                               </button>
+                              <button 
+                                onClick={() => handleChatWithEmployer(app.id)}
+                                className="text-blue-600 hover:text-blue-700 text-sm font-semibold border border-blue-200 px-3 py-1 rounded-lg hover:bg-blue-50 transition-colors"
+                              >
+                                💬 Chat
+                              </button>
+
                             </div>
                           </div>
                         </div>

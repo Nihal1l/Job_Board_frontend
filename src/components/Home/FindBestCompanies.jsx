@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Building2, MapPin, Briefcase, ChevronRight, X, CheckCircle2, Calendar } from 'lucide-react';
 import useAuthContext from '../../hooks/useAuthContext';
 import apiClient from '../../services/api-client';
+import authApiClient from '../../services/auth-api-client';
 
 const FindBestCompanies = () => {
+
   const { authTokens, user } = useAuthContext();
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -94,15 +96,14 @@ const FindBestCompanies = () => {
 
     setApplyingId(jobId);
     try {
-      const response = await apiClient.post(`/jobs/${jobId}/applys/`, {}, {
-        headers: {
-          Authorization: `JWT ${authTokens?.access}`,
-        },
-      });
+      // Use authApiClient which auto-attaches tokens
+      const response = await authApiClient.post(`/jobs/${jobId}/applys/`, {});
+      
       if (response.status === 201 || response.status === 200) {
         setAppliedJobs(prev => new Set(prev).add(jobId));
       }
     } catch (err) {
+
       setErrorMap(prev => ({ ...prev, [jobId]: 'Failed to apply' }));
     } finally {
       setApplyingId(null);

@@ -18,8 +18,12 @@ const Sidebar = () => {
           </li>
         )}
         <li>
+          <Link to="/dashboard/chat">Messages</Link>
+        </li>
+        <li>
           <Link to="/dashboard/profile">Profile</Link>
         </li>
+
         <li>
           <Link to="/">Home</Link>
         </li>

@@ -18,15 +18,14 @@ const JobCard = ({ job }) => {
     setLoading(true);
     setError('');
     try {
-      const response = await authApiClient.post(`/jobs/${job.id}/applys/`, {}, {
-        headers: {
-          Authorization: `JWT ${authTokens?.access}`,
-        },
-      });
+      // authApiClient handles tokens and refresh via interceptors
+      const response = await authApiClient.post(`/jobs/${job.id}/applys/`, {});
+      
       if (response.status === 201 || response.status === 200) {
         setApplied(true);
       }
     } catch (err) {
+
       console.error('Application failed', err);
       setError(err.response?.data?.detail || 'Failed to apply. You might have already applied.');
     } finally {

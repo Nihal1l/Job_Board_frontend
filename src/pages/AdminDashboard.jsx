@@ -2,10 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authApiClient from '../services/auth-api-client';
 import useAuthContext from '../hooks/useAuthContext';
+import { createChatRoom } from '../services/chat-service';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { user, logoutUser } = useAuthContext();
+
+  const handleChat = async (applicationId) => {
+    try {
+      const response = await createChatRoom(applicationId);
+      const roomId = response.data.id;
+      navigate(`/dashboard/chat/${roomId}`);
+    } catch (error) {
+      console.error("Error starting chat:", error);
+      alert("Failed to start chat. Please try again.");
+    }
+  };
+
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalJobs: 0,
@@ -829,7 +842,14 @@ const AdminDashboard = () => {
                               <option value="accepted">Accepted</option>
                               <option value="rejected">Rejected</option>
                             </select>
+                            <button
+                              onClick={() => handleChat(app.id)}
+                              className="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors text-sm flex items-center justify-center gap-2 mt-2"
+                            >
+                              <span>💬</span> Message Seeker
+                            </button>
                           </div>
+
                         </div>
                       </div>
                     ))

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Briefcase, CheckCircle2, MapPin, Building2, Calendar, X } from 'lucide-react';
 import useAuthContext from '../../hooks/useAuthContext';
 import apiClient from '../../services/api-client';
+import authApiClient from '../../services/auth-api-client';
 
 const PopularCategoriesWithModal = () => {
+
   const { authTokens, user } = useAuthContext();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [jobs, setJobs] = useState([]);
@@ -83,15 +85,14 @@ const PopularCategoriesWithModal = () => {
 
     setApplyingId(jobId);
     try {
-      const response = await apiClient.post(`/jobs/${jobId}/applys/`, {}, {
-        headers: {
-          Authorization: `JWT ${authTokens?.access}`,
-        },
-      });
+      // Use authApiClient which auto-attaches tokens
+      const response = await authApiClient.post(`/jobs/${jobId}/applys/`, {});
+      
       if (response.status === 201 || response.status === 200) {
         setAppliedJobs(prev => new Set(prev).add(jobId));
       }
     } catch (err) {
+
       setErrorMap(prev => ({ ...prev, [jobId]: 'Failed to apply or already applied' }));
     } finally {
       setApplyingId(null);
