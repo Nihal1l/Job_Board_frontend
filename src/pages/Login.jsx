@@ -57,7 +57,7 @@ const Login = () => {
             Enter your email and password to access your account
           </p>
 
-          <form className="space-y-4 mt-4" onSubmit={handleSubmit(onSubmit)}>
+          <form className="space-y-3 mt-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label" htmlFor="email">
                 <span className="label-text">Email</span>

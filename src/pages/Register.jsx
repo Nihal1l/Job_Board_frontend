@@ -94,7 +94,7 @@ const Register = () => {
             Create an account to get started
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 mt-4">
             <div className="form-control">
               <label className="label" htmlFor="first_name">
                 <span className="label-text">First Name</span>

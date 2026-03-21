@@ -27,6 +27,27 @@ const ChatWindow = ({ roomId }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Update last read status
+  useEffect(() => {
+    try {
+      if (messages && messages.length > 0) {
+        const lastMsg = messages[messages.length - 1];
+        if (lastMsg && lastMsg.timestamp) {
+          const readStatusRaw = localStorage.getItem('chatReadStatus');
+          let readStatus = {};
+          if (readStatusRaw) {
+            try { readStatus = JSON.parse(readStatusRaw); } catch(e) {}
+          }
+          readStatus[roomId] = lastMsg.timestamp;
+          localStorage.setItem('chatReadStatus', JSON.stringify(readStatus));
+          window.dispatchEvent(new Event('refreshUnreadCount'));
+        }
+      }
+    } catch (err) {
+      console.error('Error updating read status:', err);
+    }
+  }, [messages, roomId]);
+
   const handleSend = () => {
     if (!inputText.trim()) return;
     sendMessage(inputText);
@@ -92,7 +113,7 @@ const ChatWindow = ({ roomId }) => {
                       : 'bg-white border border-gray-200 text-gray-800 rounded-bl-md'
                   }`}
                 >
-                  {msg.message}
+                  {typeof msg === 'string' ? msg : (msg.message || msg.content || msg.text || msg.body || JSON.stringify(msg))}
                 </div>
                 <p className={`text-xs mt-1 text-gray-400 ${own ? 'text-right' : 'text-left'}`}>{time}</p>
               </div>

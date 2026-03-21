@@ -116,7 +116,7 @@ const PopularCategoriesWithModal = () => {
   };
 
   return (
-    <div className="bg-slate-50 py-20 px-6 overflow-hidden">
+    <div className="bg-slate-50 py-12 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
@@ -127,7 +127,7 @@ const PopularCategoriesWithModal = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
             <div
               key={category.id}

@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
+import useUnreadCount from "../hooks/useUnreadCount";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuthContext();
+  const { unreadCount } = useUnreadCount();
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -108,8 +110,17 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <div>
-           
+          <div className="flex items-center gap-2">
+            <Link to="/dashboard/chat" className="btn btn-ghost btn-circle" title="Messages">
+              <div className="indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-[22px] w-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+                {unreadCount > 0 && (
+                  <span className="badge badge-sm badge-secondary indicator-item">{unreadCount}</span>
+                )}
+              </div>
+            </Link>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -161,11 +172,11 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="flex gap-3">
-            <Link to="/login" className="btn btn-secondary">
+          <div className="flex items-center gap-3">
+            <Link to="/login" className="btn btn-outline btn-primary px-6">
               Login
             </Link>
-            <Link to="/register" className="btn btn-secondary">
+            <Link to="/register" className="btn btn-primary shadow-md px-6">
               Register
             </Link>
           </div>
