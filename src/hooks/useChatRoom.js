@@ -2,8 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { getRoomMessages } from '../services/chat-service';
 
 const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const WS_BASE = isLocal ? 'ws://127.0.0.1:8000/ws/chat' : 'wss://job-board-backend-api.vercel.app/ws/chat';
-
+const WS_BASE = isLocal ? 'ws://127.0.0.1:8000/ws/chat' : 'wss://job-board-backend-api.onrender.com/ws/chat';
 
 /**
  * Manages a WebSocket connection to a single chat room.
