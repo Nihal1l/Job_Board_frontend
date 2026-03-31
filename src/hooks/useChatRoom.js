@@ -2,20 +2,12 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { getRoomMessages } from '../services/chat-service';
 
 const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const WS_BASE = isLocal ? 'ws://127.0.0.1:8000/ws/chat' : 'wss://job-board-backend-api.onrender.com/ws/chat';
+const WS_BASE = (import.meta.env.VITE_WS_URL || (isLocal ? 'ws://127.0.0.1:8000' : 'wss://job-board-backend-api.onrender.com')) + '/ws/chat';
 
-/**
- * Manages a WebSocket connection to a single chat room.
- *
- * @param {string|number|null} roomId - The chat room ID (null = not connected)
- * @returns {{ messages, sendMessage, connectionStatus }}
- */
 const useChatRoom = (roomId) => {
   const [messages, setMessages] = useState([]);
-  const [connectionStatus, setConnectionStatus] = useState('disconnected'); // 'connecting' | 'connected' | 'disconnected' | 'error'
+  const [connectionStatus, setConnectionStatus] = useState('disconnected');
   const wsRef = useRef(null);
-
-  // Load message history then open WebSocket
   useEffect(() => {
     if (!roomId) return;
 
