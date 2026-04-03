@@ -10,7 +10,7 @@ const Sidebar = () => {
         {/* Sidebar content here */}
         {user?.is_staff ? (
           <li>
-            <Link to="/admin-dashboard" className="text-purple-600 font-semibold">Admin Dashboard</Link>
+            <Link to="/admin-dashboard" className="text-purple-600 font-semibold">Dashboard</Link>
           </li>
         ) : (
           <li>

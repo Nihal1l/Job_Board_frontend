@@ -19,6 +19,8 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     delete data.confirm_password;
+    data.is_staff = data.role === "employer";
+    delete data.role;
     try {
       const response = await registerUser(data);
       console.log(response);
@@ -180,6 +182,35 @@ const Register = () => {
                 className="input input-bordered w-full"
                 {...register("phone_number")}
               />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">I am a:</span>
+              </label>
+              <div className="flex gap-4">
+                <label className="label cursor-pointer gap-2 bg-base-100 p-3 rounded-lg border border-base-content/10 flex-1 hover:border-primary transition-colors">
+                  <input
+                    type="radio"
+                    name="role"
+                    className="radio radio-primary radio-sm"
+                    value="job_seeker"
+                    defaultChecked
+                    {...register("role")}
+                  />
+                  <span className="label-text font-medium">Job Seeker</span>
+                </label>
+                <label className="label cursor-pointer gap-2 bg-base-100 p-3 rounded-lg border border-base-content/10 flex-1 hover:border-primary transition-colors">
+                  <input
+                    type="radio"
+                    name="role"
+                    className="radio radio-primary radio-sm"
+                    value="employer"
+                    {...register("role")}
+                  />
+                  <span className="label-text font-medium">Employer</span>
+                </label>
+              </div>
             </div>
 
             <div className="form-control">

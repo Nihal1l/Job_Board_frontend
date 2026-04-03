@@ -141,7 +141,7 @@ const Navbar = () => {
                 {user?.is_staff ? (
                   <li>
                     <Link to="/admin-dashboard" className="justify-between text-purple-600 font-semibold">
-                      Admin Dashboard
+                      Dashboard
                     </Link>
                   </li>
                 ) : (

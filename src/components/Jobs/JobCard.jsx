@@ -27,7 +27,7 @@ const JobCard = ({ job }) => {
     } catch (err) {
 
       console.error('Application failed', err);
-      setError(err.response?.data?.detail || 'Failed to apply. You might have already applied.');
+      setError(err.response?.data?.detail || 'Already applied.');
     } finally {
       setLoading(false);
     }

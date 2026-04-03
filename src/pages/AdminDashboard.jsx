@@ -379,7 +379,7 @@ const AdminDashboard = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 text-lg">Loading admin dashboard...</p>
+          <p className="text-gray-600 text-lg">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -396,7 +396,7 @@ const AdminDashboard = () => {
                 👑
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
                 <p className="text-sm text-gray-500">Manage your platform</p>
               </div>
             </div>

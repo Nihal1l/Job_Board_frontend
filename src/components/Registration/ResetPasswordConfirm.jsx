@@ -8,26 +8,26 @@ const ResetPasswordConfirm = () => {
   const [status, setStatus] = useState("Resetting password...");
   const [new_password, setNewPassword] = useState("");
 
-  useEffect(() => {
-    const resetPassword = async () => {
-      try {
-        await apiClient.post("/auth/users/reset_password_confirm/", {
-          uid,
-          token,
-          new_password,
-        });
-        setStatus("Password reset successfully! Redirecting to login...");
-        setTimeout(() => navigate("/login"), 3000);
-      } catch (error) {
-        console.error("Password reset failed", error);
-        setStatus("Password reset failed. The link may be invalid or expired.");
-      }
-    };
-
-    if (uid && token && new_password) {
-      resetPassword();
+  const handleReset = async () => {
+    if (!new_password) {
+      setStatus("Please enter a new password.");
+      return;
     }
-  }, [uid, token, new_password, navigate]);
+    
+    setStatus("Resetting password...");
+    try {
+      await apiClient.post("/auth/users/reset_password_confirm/", {
+        uid,
+        token,
+        new_password,
+      });
+      setStatus("Password reset successfully! Redirecting to login...");
+      setTimeout(() => navigate("/login"), 3000);
+    } catch (error) {
+      console.error("Password reset failed", error);
+      setStatus("Password reset failed. The link may be invalid or expired.");
+    }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center">
@@ -42,7 +42,7 @@ const ResetPasswordConfirm = () => {
             value={new_password}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <button className="btn btn-primary" onClick={setNewPassword}>
+          <button className="btn btn-primary" onClick={handleReset}>
             Reset Password
           </button>
         </div>
