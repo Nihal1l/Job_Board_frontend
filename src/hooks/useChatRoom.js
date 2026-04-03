@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { getRoomMessages } from '../services/chat-service';
-
-const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const WS_BASE = (import.meta.env.VITE_WS_URL || (isLocal ? 'ws://127.0.0.1:8000' : 'wss://job-board-backend-api.onrender.com')) + '/ws/chat';
+import { WS_BASE_URL } from '../config';
 
 const useChatRoom = (roomId) => {
   const [messages, setMessages] = useState([]);
@@ -41,7 +39,7 @@ const useChatRoom = (roomId) => {
         return;
       }
 
-      ws = new WebSocket(`${WS_BASE}/${roomId}/?token=${token}`);
+      ws = new WebSocket(`${WS_BASE_URL}/${roomId}/?token=${token}`);
       wsRef.current = ws;
 
       ws.onopen = () => {

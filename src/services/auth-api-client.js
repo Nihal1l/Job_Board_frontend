@@ -1,10 +1,8 @@
 import axios from "axios";
-
-const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-const baseURL = (import.meta.env.VITE_BACKEND_URL || (isLocal ? "http://127.0.0.1:8000" : "https://job-board-backend-api.onrender.com")) + "/api/v1/";
+import { API_BASE_URL } from "../config";
 
 const authApiClient = axios.create({
-  baseURL
+  baseURL: API_BASE_URL
 });
 
 
@@ -37,7 +35,7 @@ authApiClient.interceptors.response.use(
         
         if (tokens?.refresh) {
           console.log("Token expired. Attempting refresh...");
-          const res = await axios.post(`${baseURL}/auth/jwt/refresh/`, { 
+          const res = await axios.post(`${API_BASE_URL}auth/jwt/refresh/`, { 
             refresh: tokens.refresh 
           });
           
