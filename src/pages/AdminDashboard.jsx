@@ -420,7 +420,7 @@ const AdminDashboard = () => {
                   <p className="text-sm font-semibold text-gray-900">
                     {user?.first_name ? `${user.first_name} ${user.last_name}` : user?.email || 'Admin'}
                   </p>
-                  <p className="text-xs text-purple-600 font-semibold">Administrator</p>
+                  <p className="text-xs text-purple-600 font-semibold">Admin/Employer</p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-bold uppercase">
                   {user?.first_name?.charAt(0) || user?.email?.charAt(0) || 'A'}
@@ -438,7 +438,7 @@ const AdminDashboard = () => {
         <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 mb-8 text-white shadow-xl">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-3xl font-bold mb-2">Welcome back, Admin! 👋</h2>
+              <h2 className="text-3xl font-bold mb-2">Welcome back 👋</h2>
               <p className="text-purple-100 text-lg">
                 You have {stats.pendingApplications} pending applications to review.
               </p>
